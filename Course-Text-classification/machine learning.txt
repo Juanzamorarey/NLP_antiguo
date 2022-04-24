@@ -1,0 +1,78 @@
+            Machine learning basics:
+
+
+    aprendizaje supervisado (nos centramos en esto) buen libro -> Introduction to statistical learning
+
+    Machone Learning (ML) Es un metodo de analisis de datos que automatiza la construcción de modelos analíticos. 
+    El supervised learning se entrenan con ejemplos etiquetados. Es decir datos de los que se sabe qué output darán
+    antes de llevar a cabo la operación. 
+
+    El algoritmo recibirá los inputs junto con los outputs correctos y luego los datos a analizar y, a partir de ahí
+    clasificará los segundos en función del entrenamiento recibido por el primer grupo.  
+
+    El proceso es simple cogemos los datos -> limpiamos los datos-> dividimos los datos limpios en modelo y entrenamiento
+    y a partir de aquí elaboramos un modelo de testeo y repetimos los pasis anteriores hasta alcanzar un modelo desplegable
+    para su uso real. 
+
+    Para obtener datos hay muchas fuentes. Ahora hay que limpiarlos usando vectorización (se verá en el futuro), una vectorización
+    tenemos esto dividmos el training set y el trainign de pruebas. Con esto usaremos el training set y lo haremos
+    funcionar en nuestro algorimto (aprox el 70% de los datos), para evaluar el modelo usamos el test data y las 
+    matrices de evaluación para ver qué tal hizo el modelo. Ahora podemos mejorar nuestro modelo cambiando algunos 
+    parametros y repitiendo hasta que pensemos que tenemos un modelo lo suficientemente útil, entonces tendremos
+    un modelo desplegable. 
+
+    En el modelo vamos a tener etiquetas y caracteristicas (labelsm = y and features = X)
+
+    y            X
+
+    Spam         consigue un desucneto de...
+    legitimo    Hola Juan: consigue....
+
+    70 % training data set
+    30% test data set
+
+    Cuando dividimos en el conjunto del training data set y el test data set tendremos 4 variables =
+     Y test X test / Y train X train
+
+    Classification matrix:
+
+    Las matrices de clasificación sirven para medir los modelos. Tenemos que tener en cuenta Accuracy, Recall, precision 
+    y F1-Score. El último es una combinación de recall y precision.
+
+
+    El modelo, fndamentalemente tiene dos salidas: spam o legitimo; carne o verdura; bien o mal...
+    Es necesario aclarar que el proceso que viene ahora sería con los datos tras pasar por un proceso de vectorización
+    que veremos más adelante. 
+
+    Cuando tenemos los datos limpios los vamos a introducir en el modelo y, teniendo en cuenta que ya sabemos si se trata
+    de spam o no, tendremos finalmente una cuenta con todos los mensajes del test data set que han sido predecidos correctamente
+    y los que han sido predecidos incorrectamente. Es importante entender que no todas las predicciones correctas o 
+    incorrectas tienen el mismo valor, tenemos que tener varios factores en cuenta. Para ello tenemos los parametros
+    antes mencionados:
+
+    Accuracy = number_correct_predictions/total_number_of_predictions (es útil si existen clases balanceadas)
+            
+            Una clase balanceada es aquella que posee aproximadamente un 50% de cada uno de los outputs que pueden salir
+            Si en unos correos tenemos 90% de legitimos y 10% spam no es una clase balanceada, si fueran 50% los dos, sí 
+            lo sería.
+
+    Recall = true_positives/true_positives + false_negatives
+
+    Precision = true_positives/true_positives + false_positives
+
+    F1-Score = 2*(precision*recall/precision+recall)
+
+    Estas ecuaciones vienen tras el paso de los datos por la matriz de confusión, para ello tenemos que entender que
+    en nuestro modelo hay 4 tipos de salidas: 
+        -Correctamente clasificado como legitimo (true_positives)
+        -Correctamente clasificado como spam (true_negative)
+        -Incorrectamente clasificado como legitimo (false_positives)
+        -Incorrectamente clasificado como spam (false_negatives)
+
+    En una matriz de confusión podríamos redefinir accuarecy de la siguiente manera 
+
+    Accuracy = (true_positives + true_negative)/total cuanto mas alto mejor
+
+    El contrario de accuracy es el Error_rate
+
+    Error_rate = (false_positives+false_negatives)/ total cuanto menor mejor
