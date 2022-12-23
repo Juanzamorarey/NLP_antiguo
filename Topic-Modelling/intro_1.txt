@@ -1,0 +1,59 @@
+Vamos a usar el latent dirichlet allocation también llamado factorización de matrices no negativas. 
+
+El topica modelling nos ayuda a clasificar grandes volúmenes de datos clasificándolos en tema. Estos datos que recibimos
+no tienen etiquetas. lo que significa que no podremos crear modelos de machine learning, tal y como vimos previamente. 
+Otra razón por la que no podemos usar el modelo anterior es porque la clasificación no tiene únicamente dos 
+paradigmas enfrentados: Spam vs. legitimo / buena vs. malo. Si tenemos, por ejemplo, noticias de periódico podemos
+clasificarlos en una variedad enorme de secciones o tópicos. 
+
+Al no tener etiquetas tendremos que adivinarlas y, en lo referente a los datos, esto significa que debemos agrupar
+los documentos por temas. Debemos recordar que no existe una respuesta correcta al aplicar este modelo sino que 
+lso docuemntos que se agrupan comparten una serie de ides similares y el usuario debe identificar si estos temas
+son representativos o no. 
+
+Letent dirichlet allocation: (LDA)
+
+Se trata de una distribuición probabilística. La idea es que un texto que pertenezca a cierto grupo tendrá una serie de
+palabras en común con otros textos que pertenezcan a ese mismo grupo. Para clasificarlos usamos entonces dos distribuciones:
+
+    -Los documentos son distribuciones probabilísticas de los temas 
+    -Los temas son distribuciones probabilísticas de las palabras que aparecen en ellos. 
+
+Así un texto va a tener una probabilidad X de pertenecer a a un tema u otro, la probabilidad mayor entonces será la que
+elijamos. Lo mismo podríamos decir con un tema. El tema animales posee una serie de palabras cuya probabilidad de aparición
+es mayor o menor. Así perro tiene un 90%, tigre un 85% pero mercado laboral un 12%. Haciendo esto entonces lo que haríamos es
+elegir las 10 palabras que más aparecen en un tema y, a partir de ellas, intentar adivinar de qué tema se trata. 
+
+Así LDA nos muestra documentos como una mezcla de temas que tienen palabras con una cierta probabilidad. Entonces lo que
+vamos a hacer es, a partir de las palabras, elegir una serie de temas para ese docuemtno y, de acuerdo a la distribución que
+hemos realizado vamos a crear una matriz de distribucion de temas, digamos por ejemplo 60% negocios, 30% comida y 10% mascotas.
+Usando esta matriz vamos a volver al docuemtno y reclasificar las palabras de modo que solo puedan estar en las categorías 
+que nosotros hemos designado en dicha matriz. De esta manera para cada palabra tendremos una serie de probabilidades que 
+responden a cada tema. Tras realizar este proceso con cada uno de los docuemntos de un corpus, el modelo LDA intentará
+reproducir un set de temas posibles para el corpus. 
+
+
+Si, por ejemplo, imaginemos que tenemos varios docuemtnos y hemos seleccionado una serie de temas. Lo que haremos será 
+ir al docuemnto y asignar aleatoriamente cada palabra a uno de los temas que hemos elegido. Esta primera distribución no 
+tiene, en realidad ningún sentido, pero una vez hehco podremos empezar a trabjar con nuestro modelo e ir puliéndolo. 
+
+Ahora lo que haremos será para cada palabra en el documento y cada tema en el documento la siguiente operacion: 
+    p(tema X/documento y) = proporción de palabras en el documento "y" que están asignadas al tema "X"
+
+    p(palabra W/ tema X) = la proporción de asignaciones al tema "X" en todos los docuemntos que vienen 
+    de la palabra "W"
+
+     p(tema X/documento y)*p(palabra W/ tema X) = reasgianmos a "W" un nuevo tema, de este modo vemos la probabilidad de que
+     el tema X genere la palabra W.
+
+Tras repetir este proceso un montón de veces empezaremos a tener un estado en el que, más o menos, el modelo comienza a ser 
+aceptable. Tras esto tenemos tendremos también cada documento asignado a un tema y además podremos buscar las palabras que 
+tienen mayor probabilidad de ser asignadas a un tema concreto. El modelo entonces nos dirá creo que este docuemnto tiene
+este tema y depende del usuario ver cuáles son las 10 palabras más frecuentes y asignarles un topic. 
+
+Siendo así dos notas importantes son el número de temas que el usuario quiere utilizar en su clasificación así como 
+intentar interpretar cuál es el tema. 
+
+
+
+
